@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="get">
-    {{ form.url }}
-</form>
+<div class="main">
+  	<h2>Short Url</h2>
+  <div class="short-sum"><h4>Paste your long url here:<h4></div>
+    {{ form.url (class ="input")  }}<br>
+    <button class="button copy">Copy</button>
+</div>
+<script src="{{ url_for('static' , filename='copy.js') }}"></script>
 {% endblock content  %}
