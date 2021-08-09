@@ -1,0 +1,41 @@
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+		<title>iika || shorten your urls</title>
+		<link rel="stylesheet"  href="{{ url_for('static' , filename='main.css') }}" />
+	</head>
+	<body>
+		<nav>
+			<div class="title">
+				<img src="{{ url_for('static' , filename='assets/link.png') }}"alt="link icon" />
+				<h2>iika</h2>
+			</div>
+			<ul>
+				<li>about</li>
+				<li>Github</li>
+			</ul>
+		</nav>
+		<main>
+			<header>
+				<img src="{{ url_for('static' , filename='assets/link.png') }}"alt="link icon" />
+				<h2>iika</h2>
+			</header>
+			<section class="para">
+				<p>Most link shorteners do too much.</p>
+				<p>This one just makes your links shorter</p>
+			</section>
+			<section class="form-containtor">
+				<div class="input-contantor">
+					<input type="text" placeholder="paste your link here..." />
+					<object data="" type="image/svg+xml" id="error-icon"></object>
+					<button>Drop it</button>
+				</div>
+				<span id="error">Please input vaid url</span>
+			</section>
+			<section class="url-containor">
+			</section>
+
+		</main>
+	</body>
+	<script src="{{ url_for('static' , filename='index.js' )}}"></script>
+</html>

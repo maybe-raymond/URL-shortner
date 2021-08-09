@@ -1,56 +1,38 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, request, jsonify, redirect
 from main import app, db
-from main.forms import Url_form, Customise
-from string import ascii_letters, digits
-from random import randint
 from main.models import URL
+from main.utils import add_Url_to_database, randomSringGenerator, is_in_database
 
 
 domain = "127.0.0.1:5000/"
 
 
-@app.route("/", methods=["POST", "GET"])
+@app.route("/")
 def home():
-    form = Url_form()
-    if form.validate_on_submit():
-        new = f"{randomSringGenerator(5)}"
-        U = URL(orginal_link =form.url.data,  new_link=new)
-        db.session.add(U)
-        db.session.commit()
-        return redirect(url_for("New_url", new=new))
-    return render_template("home.html", form=form)
-
-
-@app.route("/custom", methods=["POST", "GET"])
-def Custom():
-    form = Customise()
-    if form.validate_on_submit():
-        U = URL(orginal_link =form.url.data,  new_link=form.custom.data)
-        db.session.add(U)
-        db.session.commit()
-        return redirect(url_for("New_url", new=form.custom.data))
-    return render_template("custom.html", form=form)
-
-
-@app.route("/New url/", methods=["POST", "GET"])
-def New_url():
-    form = Url_form()
-    new = request.args.get("new")
-    form.url.data = f"{domain}{new}"
-    return render_template("r.html", form=form)
+    return render_template("index.html")
 
 
 
-@app.route("/<used_url>", methods=["POST", "GET"])
+#Api implemtation
+@app.route("/shorten", methods=["POST"])
+def Shoterned_Url():
+    data = request.get_json()
+    new_url = randomSringGenerator(3)
+    check = is_in_database(new_url)
+    while(check):
+        print("hello")
+        new_url = randomSringGenerator(3)
+        check = is_in_database(new_url)
+    add_Url_to_database(data, new_url)
+    return {
+        "url": f"{domain}{new_url}"
+    }
+
+
+@app.route("/<used_url>", methods=["GET"])
 def go_To_Url(used_url):
     p = URL.query.filter_by(new_link=used_url).first()
     return redirect(p.orginal_link)
 
 
-def randomSringGenerator(length):
-    value = ""
-    for i in range(length):
-        n = randint(0, 9)
-        l = randint(0, 25)
-        value = f"{value}{ascii_letters[l]}{digits[n]}"
-    return value
+
