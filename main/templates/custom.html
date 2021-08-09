@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main">
+    <p id="here">Paste your long URL here:<p>
+  <form method="post">
+
+    {{ form.csrf_token }}
+      {{ form.hidden_tag() }}
+      <div class="try">
+        <div class="old">{{ form.url.label (class="old-label")}}
+          {{ form.url (class ="input")  }}</div>
+            {% for error in form.url.errors  %}
+              <span style="color:red;"> {{  error }} <span>
+                {% endfor %}
+      <div class="new">{{ form.custom.label }}
+      {{ form.custom  (class ="input")  }}</div>
+        {% for error in form.custom.errors  %}
+          <span style="color:red;"> {{  error }} <span>
+            {% endfor %}
+    </div>
+      <div class="both">{{form.submit (class = "button") }} <div>
+</form>
+</div>
+{% endblock content  %}
