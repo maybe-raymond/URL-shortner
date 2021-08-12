@@ -1,6 +1,6 @@
 from flask import render_template, request, jsonify, redirect, abort
 from main import application, db
-from main.config import Development as d
+from main.config import Deployment as d
 from main.models import URL
 from main.utils import add_Url_to_database, randomSringGenerator, is_in_database
 
