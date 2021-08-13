@@ -13,4 +13,4 @@ class Development(Config):
     Domain = "http://127.0.0.1:5000/"
 
 class Deployment(Config):
-    Domain =  "http://iika-env.eba-cabvyiip.us-east-2.elasticbeanstalk.com/"
+    Domain = "http://flask-env.eba-breifsjg.us-east-2.elasticbeanstalk.com/"

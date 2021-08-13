@@ -4,7 +4,7 @@ class Application{
     constructor(){
         this.form = new FormValidation()
         this.urlContainor = new  UrlContainor()
-        this.serverUrl = `http://127.0.0.1:5000/shorten`
+        this.serverUrl = `http://flask-env.eba-breifsjg.us-east-2.elasticbeanstalk.com/shorten`
         this.responseObject={}
     }
 
@@ -38,7 +38,7 @@ class Application{
     buttonOnclickEvent(){
         this.form.button.addEventListener("click", () => {
             if  (this.form.onclickFunc()){
-                this.sendData(this.serverUrl, this.form.InputValue)
+                this.sendData(this.serverUrl, this.form.getInput())
             }
         })
     }
@@ -64,14 +64,13 @@ class FormValidation{
         this.errorIcon  = document.querySelector("#error-icon")
         this.errorMessage = document.querySelector("#error")
         this.ImageUrl = "../static/assets/icon-error.svg"
-        this.InputValue =  this.input.value
         this.web = new RegExp("www\.");
         this.dot = new RegExp("\.co");
 
     }
 
     onclickFunc(){
-        if (this.isURL(this.InputValue)) {
+        if (this.isURL(this.getInput())) {
             this.reset();
             return true
         }
@@ -103,6 +102,11 @@ class FormValidation{
         }catch(e){
             return false
         }
+    }
+
+    getInput(){
+        this.input = document.querySelector("input");
+        return this.input.value
     }
 
 }
