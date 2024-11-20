@@ -28,6 +28,12 @@ This project is a web-based application that shortens long URLs into concise, sh
     pip install -r requirements.txt
     ```
 
-3. Setup Database
+3. Setup Database:
+    use this command in the terminal
     ```
+     flask --app application create-db
     ```
+
+
+### TODO
+- Redesign site

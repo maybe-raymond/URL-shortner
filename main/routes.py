@@ -1,8 +1,21 @@
 from flask import render_template, request, redirect, abort
-from main import application
+from main import application, db
 from main.models import URL
 from urllib.parse import urlparse
 from main.utils import add_Url_to_database, randomSringGenerator, is_in_database, is_url_in_DB
+import os 
+
+
+
+@application.cli.command('create-db')
+def create_database():
+    """Create the database if it does not exist."""
+    if not os.path.exists('database.db'):  # Adjust for other DB types if needed
+        db.create_all()
+        print("Database created successfully!")
+    else:
+        print("Database already exists.")
+
 
 
 def is_valid_url(url):
@@ -12,14 +25,6 @@ def is_valid_url(url):
         return all([parsed.scheme, parsed.netloc])
     except Exception:
         return False
-
-
-# Command to create the database if it doesn't exist
-@application.before_first_request
-def create_database():
-    if not os.path.exists('database.db'):  # Check for SQLite file (or adapt for other DBs)
-        db.create_all()
-        print("Database created successfully!")
 
 
 @application.route("/", methods=["GET", "POST"])
