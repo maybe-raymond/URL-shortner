@@ -32,6 +32,13 @@ h2{
 	font-family: 'Fraunces', serif;
 }
 
+
+#h2header{
+	font-size: 4em;
+	margin: 0px;
+	margin-left: 20px;
+}
+
 img{
 	object-fit:contain;
 	width: 25%;
@@ -58,12 +65,13 @@ main{
 header{
 	display:flex;
 	align-items:center;
-
 }
 
+header.div.h2{
+	font-size: 4em;
+}
 
 h2{
-	font-size:4em;
 	margin-left:15px
 }
 
@@ -71,22 +79,13 @@ h2{
 	font-size:1.2em;
 }
 
-.form-containtor{
-	width:65%;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	height:25%;
-	flex-direction: column;
-}
 
 .input-contantor{
-	width:60%;
 	display:flex;
 	justify-content: space-between;
-	height:25%;
 	border-radius:6px;
 	background:#edf2ff;
+	width:40%;
 }
 
 input{
@@ -116,22 +115,18 @@ button{
 }
 
 button:hover{
-	background:#A43f99;
-	padding: 1.1rem;
+	background:#df73d2;
 	
 }
 
 .url-containor{
-	display: none;
-	flex-direction: column;
+	display: flex;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	background-color: #fb56e6;
     padding: 0.4rem;
-    width: 25%;
     border-radius: 5px;
 	font-family: 'Fraunces', serif;
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .links{
@@ -143,7 +138,8 @@ button:hover{
 }
 
 #copy-icon {
-	width: 5%;
+	width: 3%;
+	margin-right: 20px;
 }
 
 .links:hover{
@@ -151,30 +147,14 @@ button:hover{
 }
 
 #error{
-    margin-top: 14px;
-    color: transparent;
-    margin-left: 15px;
-    font-size: 0.9em;
+    border: 1px solid red;
 }
 
-#error-icon{
-    margin-top: 12px;
+#error-text{
+    color: rgb(185, 24, 24);
+	font-size: 1em;
+	font-family: 'Fraunces', serif;
 }
 
 
-@media only screen and (min-width: 768px)  and (max-width : 900px) {
-
-	nav{
-		justify-content:space-between;
-	}
-
-	.form-containtor, .input-contantor{
-		width:80%;
-	}
-
-	.url-containor{
-		width: 45%;
-		padding: 0.6rem;
-	}
-	
-  }
+@media only screen and (min-width: 768px)  and (max-width : 900px) {}

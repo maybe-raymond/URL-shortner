@@ -4,13 +4,8 @@ class Config(object):
     DEBUG = False
     TESTING = False
     SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
-    JSON_SORT_KEYS = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class Development(Config):
     DEBUG = True
-    Domain = "http://127.0.0.1:5000/"
-
-class Deployment(Config):
-    Domain = "http://flask-env.eba-breifsjg.us-east-2.elasticbeanstalk.com/"

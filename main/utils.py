@@ -16,10 +16,12 @@ def is_in_database(url):
     if data is None:
         return True
     return False
-    
+
+def is_url_in_DB(url:str) -> bool:
+    query = db.session.query(URL).filter_by(orginal_link=url).first()
+    return query
 
 
-# functions and stuff
 def randomSringGenerator(length):
     value = ""
     for _ in range(length):

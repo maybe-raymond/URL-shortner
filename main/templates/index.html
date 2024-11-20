@@ -18,24 +18,43 @@
 		<main>
 			<header>
 				<img src="/static/assets/link.png"alt="link icon" />
-				<h2>iika</h2>
+				<div>
+					<h2 id="h2header">iika</h2>
+				<div>
 			</header>
 			<section class="para">
 				<p>Most link shorteners do too much.</p>
 				<p>This one just makes your links shorter</p>
 			</section>
-			<section class="form-containtor">
-				<div class="input-contantor">
-					<input type="text" placeholder="paste your link here..." />
-					<object data="" type="image/svg+xml" id="error-icon"></object>
-					<button>Drop it</button>
-				</div>
-				<span id="error">Please input vaid url</span>
-			</section>
-			<section class="url-containor">
-			</section>
+			{% if error %}
+				<form class="input-contantor" id="error" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data" >
+					<input type="text" placeholder="paste your link here..." name="links"/>
+					<button type="submit">Shorten</button>
+				</form>
+				<span id="error-text">{{error}}</span>
+			{% else %}
+					<form class="input-contantor"  action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data" >
+						<input type="text" placeholder="paste your link here..." name="links"/>
+						<button type="submit">Shorten</button>
+					</form>
+			{% endif %}
+			{% if form_data %}
+				<section class="url-containor">
+					<img src="/static/assets/copy.png" id="copy-icon">
+					<p id="new_link">{{form_data}}</p>
+				</section>
+				<script>
+					let button = document.querySelector("#copy-icon");
+
+					button.addEventListener("click", (_) =>{
+						let paragraph = document.querySelector("#new_link");
+           				let text = paragraph.innerHTML
+            			navigator.clipboard.writeText(text)
+					})
+
+				</script>
+			{% endif %}
 
 		</main>
 	</body>
-	<script src="/static/index.js"></script>
 </html>
