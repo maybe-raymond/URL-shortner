@@ -2,36 +2,46 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
 		<title>iika || shorten your urls</title>
-		<link rel="stylesheet"  href="/static/main.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<meta name="color-scheme" content="light dark">
+		<link rel="stylesheet" href="/static/main.css">
 	</head>
 	<body>
-		<nav>
-			<div class="title">
-				<img src="/static/assets/link.png"alt="link icon" />
-				<h2>iika</h2>
-			</div>
+		<nav class="container">
 			<ul>
-				<li>about</li>
-				<li>Github</li>
+				<li>
+					<strong>iika</strong>
+				</li>
+			</ul>
+			<ul>
+				<li><a class="contrast">about</a></li>
+				<li><a class="contrast">Github</a></li>
 			</ul>
 		</nav>
-		<main>
-			<header>
-				<img src="/static/assets/link.png"alt="link icon" />
-				<div>
-					<h2 id="h2header">iika</h2>
-				<div>
-			</header>
-			<section class="para">
-				<p>Most link shorteners do too much.</p>
-				<p>This one just makes your links shorter</p>
-			</section>
+		<main class="container">
+			<hgroup>
+				<header>
+					<img src="/static/assets/link.png"alt="link icon" />
+					<div>
+						<h2>iika</h2>
+					<div>
+				</header>
+				<section class="para">
+					<p>Experience the future of link shortening.
+						<br>
+					 Simplify your links, boost your click-through rates, and protect your privacy. Try it now and see the difference</p>
+				</section>
+			</hgroup>
 			{% if error %}
 				<form class="input-contantor" id="error" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data" >
-					<input type="text" placeholder="paste your link here..." name="links"/>
+					<input type="text" name="links" aria-invalid="true" aria-describedby="invalid-helper" placeholder="paste your link here...">
+						<small id="invalid-helper">
+  								{{error}}
+						</small>
 					<button type="submit">Shorten</button>
 				</form>
-				<span id="error-text">{{error}}</span>
 			{% else %}
 					<form class="input-contantor"  action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data" >
 						<input type="text" placeholder="paste your link here..." name="links"/>
@@ -39,12 +49,12 @@
 					</form>
 			{% endif %}
 			{% if form_data %}
-				<section class="url-containor">
-					<img src="/static/assets/copy.png" id="copy-icon">
+				<article>
 					<p id="new_link">{{form_data}}</p>
-				</section>
+					<button id="copy">Copy</button>
+				</article>
 				<script>
-					let button = document.querySelector("#copy-icon");
+					let button = document.querySelector("#copy");
 
 					button.addEventListener("click", (_) =>{
 						let paragraph = document.querySelector("#new_link");

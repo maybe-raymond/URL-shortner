@@ -1,160 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;0,900;1,600&display=swap');
-
-body{
-	width:100%;
-	height:100%;
-	margin:0;
-	background: #d7dcea;
-	text-align:center;
-	font-family: 'Inter', sans-serif; 	
-}
-
-nav{
-	display:flex;
-	justify-content:space-around;
-	align-items: baseline;
-	padding:2rem
-}
-
-.title{
-	display:flex;
-	align-items:baseline;
-}
-
-
-nav h2{
-	margin-top:0;
-	font-size:2em;
-}
-
-h2{
-	font-family: 'Fraunces', serif;
-}
-
-
-#h2header{
-	font-size: 4em;
-	margin: 0px;
-	margin-left: 20px;
-}
-
-img{
-	object-fit:contain;
-	width: 25%;
-}
-
-
-ul{
-	display:flex;
-	list-style-type:none
-}
-
-li{
-	margin-right: 55px;
-}
 
 main{
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-	width:100%;
-	height:100%;
+	width: 60%;
 }
-
 header{
-	display:flex;
-	align-items:center;
-}
-
-header.div.h2{
-	font-size: 4em;
-}
-
-h2{
-	margin-left:15px
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .para{
-	font-size:1.2em;
+	text-align: center;
 }
-
-
-.input-contantor{
-	display:flex;
-	justify-content: space-between;
-	border-radius:6px;
-	background:#edf2ff;
-	width:40%;
-}
-
-input{
-	border:none;
-	width:75%;
-	background:transparent;
-	padding:1.5rem;
-}
-
-input:focus-visible{
-	outline:none;
-}
-
-input:focus{
-	border:none;
-}
-
-button{
-	width:25%;
-	border:none;	
-	background:#fb56e6;
-	border-radius:4px;
-	font-weight:700;
-	font-family: 'Fraunces', serif;
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
-}
-
-button:hover{
-	background:#df73d2;
-	
-}
-
-.url-containor{
+article{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-    padding: 0.4rem;
-    border-radius: 5px;
-	font-family: 'Fraunces', serif;
 }
 
-.links{
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	border-bottom: solid 2px;
-
+#new_link{
+	margin-right: 10px;
 }
-
-#copy-icon {
-	width: 3%;
-	margin-right: 20px;
-}
-
-.links:hover{
-	background:#A43f99;
-}
-
-#error{
-    border: 1px solid red;
-}
-
-#error-text{
-    color: rgb(185, 24, 24);
-	font-size: 1em;
-	font-family: 'Fraunces', serif;
-}
-
-
-@media only screen and (min-width: 768px)  and (max-width : 900px) {}

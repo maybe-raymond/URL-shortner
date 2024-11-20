@@ -75,6 +75,7 @@ def go_To_Url(used_url):
     Goes to the link if it is in the databse
     """
     p = URL.query.filter_by(new_link=used_url).first()
+    print(p)
     if p is None or p.orginal_link is None:
         abort(400)
     return redirect(p.orginal_link)
