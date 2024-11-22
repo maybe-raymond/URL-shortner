@@ -1,7 +1,12 @@
 
-main{
-	width: 60%;
+#main{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
+
+
 header{
 	text-align: center;
 	display: flex;
@@ -11,6 +16,7 @@ header{
 
 .para{
 	text-align: center;
+	line-height: 2;
 }
 article{
 	display: flex;
@@ -21,4 +27,12 @@ article{
 
 #new_link{
 	margin-right: 10px;
+}
+
+hgroup{
+	max-width: 55%;
+}
+
+.input-cont{
+
 }

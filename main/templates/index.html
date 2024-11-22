@@ -20,10 +20,9 @@
 				<li><a class="contrast">Github</a></li>
 			</ul>
 		</nav>
-		<main class="container">
+		<main id="main">
 			<hgroup>
 				<header>
-					<img src="/static/assets/link.png"alt="link icon" />
 					<div>
 						<h2>iika</h2>
 					<div>
@@ -34,6 +33,7 @@
 					 Simplify your links, boost your click-through rates, and protect your privacy. Try it now and see the difference</p>
 				</section>
 			</hgroup>
+			<div class="input-cont">
 			{% if error %}
 				<form class="input-contantor" id="error" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data" >
 					<input type="text" name="links" aria-invalid="true" aria-describedby="invalid-helper" placeholder="paste your link here...">
@@ -64,7 +64,7 @@
 
 				</script>
 			{% endif %}
-
+			</div>
 		</main>
 	</body>
 </html>
