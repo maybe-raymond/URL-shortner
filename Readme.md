@@ -8,6 +8,8 @@ This project is a web-based application that shortens long URLs into concise, sh
 - URL Validation: Ensures that only valid URLs are processed.
 - Custom Short Links: Generates unique shortened links for new URLs.
 - Responsive Design: Simple and user-friendly interface.
+## ScreenShot
+![Screenshot 2024-11-22 135027](https://github.com/user-attachments/assets/09cae6fd-ea20-4bf6-8ed4-50acb656a037)
 
 ### Installation  
 #### Prerequisites
