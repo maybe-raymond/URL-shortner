@@ -9,7 +9,7 @@ import os
 
 @application.cli.command('create-db')
 def create_database():
-    """Create the database if it does not exist."""
+    """ Create the database if it does not exist."""
     if not os.path.exists('database.db'):  # Adjust for other DB types if needed
         db.create_all()
         print("Database created successfully!")
@@ -29,24 +29,35 @@ def is_valid_url(url):
 
 @application.route("/", methods=["GET", "POST"])
 def index():
-    new_link = None
-    error  = None
+    """
+    Shows the homepage form
+    """
+    return render_template("index.html", form_data=None, error=None)
 
-    if request.method == "POST":
-        form_data = request.form.get("links")
-        if is_valid_url(form_data):
-            check  = is_url_in_DB(form_data)
-            if check:
-                new_link = f"{request.scheme}://{request.host}/{check.new_link}"
-            else:
-                link = generate_new_link(form_data)
-                if link:
-                    new_link = f"{request.scheme}://{request.host}/{link}"
-                else:
-                    error = "Cannot shorten link"
-        else:
-            error = "Not a valid URL"
-    return render_template("index.html", form_data=new_link, error=error)
+
+@application.route("/", methods=["POST"])
+def link_shorten_form():
+    """
+    Handles form submissions for inputting links 
+    """
+    form_data = request.form.get("links")
+        
+    if not is_valid_url(form_data):
+        return render_template("index.html", form_data=None, error="Not a valid URL")
+
+    db_url = is_url_in_DB(form_data)
+    if  db_url:
+        # returns a URL already in the DB 
+        link = f"{request.scheme}://{request.host}/{db_url.new_link}"
+        return render_template("index.html", form_data=link, error=None)
+
+    # when a new link needs to be generated 
+    link = generate_new_link(form_data)
+    if link:
+        link = f"{request.scheme}://{request.host}/{link}"
+        return render_template("index.html", form_data=link, error=None)
+
+    return render_template("index.html", form_data=None, error="Cannot shorten link")
 
 
 def generate_new_link(url: str) -> str:
@@ -72,7 +83,7 @@ def generate_new_link(url: str) -> str:
 @application.route("/<used_url>", methods=["GET"])
 def go_To_Url(used_url):
     """
-    Goes to the link if it is in the databse
+    Goes to the link if it is in the database
     """
     p = URL.query.filter_by(new_link=used_url).first()
     print(p)
