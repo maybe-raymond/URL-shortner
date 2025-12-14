@@ -19,6 +19,8 @@ def create_database():
 
 
 def is_valid_url(url):
+    # This is a bad url validation function
+    #urlparser does not validate a URL and requires http or https in the url
     try:
         parsed = urlparse(url)
         # Check if the scheme and netloc are present
@@ -27,7 +29,7 @@ def is_valid_url(url):
         return False
 
 
-@application.route("/", methods=["GET", "POST"])
+@application.route("/", methods=["GET"])
 def index():
     """
     Shows the homepage form
@@ -43,8 +45,9 @@ def link_shorten_form():
     form_data = request.form.get("links")
         
     if not is_valid_url(form_data):
-        return render_template("index.html", form_data=None, error="Not a valid URL")
-
+        print("Not vaild url")
+        return render_template("index.html", form_data=None, error="Not a valid URL. Please check if HTTPs is in the string")
+    
     db_url = is_url_in_DB(form_data)
     if  db_url:
         # returns a URL already in the DB 
@@ -53,6 +56,7 @@ def link_shorten_form():
 
     # when a new link needs to be generated 
     link = generate_new_link(form_data)
+    print("generating URL")
     if link:
         link = f"{request.scheme}://{request.host}/{link}"
         return render_template("index.html", form_data=link, error=None)
